@@ -25,5 +25,12 @@ server.post("/ask", async (req, res) => {
   } catch(e) {res.status(400).send({})}
 });
 
+server.get("/ask", async (req, res) => {
+  try {
+    let response = await bot.ask('Can you give me top new for today?');
+    res.status(200).send(response);
+  } catch(e) {res.status(400).send({})}
+});
+
 let port = 8888;
 server.listen(port, () => console.log(`listening to ${port}`));
