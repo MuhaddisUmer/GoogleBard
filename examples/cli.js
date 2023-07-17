@@ -17,11 +17,10 @@ let bot = new Bard(cookies, {
   // }
 });
 
-server.get("/ask", async (req, res) => {
+server.post("/ask", async (req, res) => {
   try {
-    // const { prompt, conversationId } = req['body'];
-    const prompt = 'What is your name?';
-    let response = await bot.ask(prompt);
+    const { prompt, conversationId } = req['body'];
+    let response = await bot.ask(prompt, conversationId);
     res.status(200).send(response);
   } catch(e) {res.status(400).send({})}
 });
