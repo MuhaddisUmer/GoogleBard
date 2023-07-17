@@ -25,5 +25,5 @@ server.post("/ask", async (req, res) => {
   } catch(e) {res.status(400).send({})}
 });
 
-let port = 888;
+let port = 8888;
 server.listen(port, () => console.log(`listening to ${port}`));
