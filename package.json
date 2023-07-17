@@ -59,7 +59,8 @@
 		"axios": "1.3.2",
 		"cheerio": "1.0.0-rc.12",
 		"dbcontext": "1.0.4",
-		"dotenv": "16.0.3"
+		"dotenv": "16.0.3",
+		"express": "^4.18.2"
 	},
 	"bugs": {
 		"url": "https://github.com/PawanOsman/GoogleBard/issues"
