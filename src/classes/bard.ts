@@ -186,7 +186,7 @@ class Bard {
 	public async ask(prompt: string, conversationId?: string) {
 		// return await this.askStream((data) => {}, prompt, conversationId);
 		let resData = await this.send(prompt, conversationId);
-		return resData[3];
+		return resData;
 	}
 
 	public async askStream(data: (arg0: string) => void, prompt: string, conversationId?: string) {
@@ -214,19 +214,20 @@ class Bard {
 					"f.req": JSON.stringify([null, `[[${JSON.stringify(prompt)}],null,${JSON.stringify([conversation.c, conversation.r, conversation.rc])}]`]),
 				}),
 				{
+					timeout: 15000, // Set a timeout of 15 seconds
 					headers: {
 						Cookie: this.cookies,
 					},
 					params: {
 						bl: bl,
-						rt: "c",
+						rt: "0",
 						_reqid: "0",
+						return_html:false,
 					},
 				},
 			);
 
 			// let cookies = response.headers["set-cookie"];
-
 			// if (cookies) this.cookies = cookies.join("; ");
 
 			let parsedResponse = this.ParseResponse(response.data);

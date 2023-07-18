@@ -171,7 +171,7 @@ class Bard {
     }
     async ask(prompt, conversationId) {
         let resData = await this.send(prompt, conversationId);
-        return resData[3];
+        return resData;
     }
     async askStream(data, prompt, conversationId) {
         let resData = await this.send(prompt, conversationId);
@@ -197,19 +197,22 @@ class Bard {
                 at: at,
                 "f.req": JSON.stringify([null, `[[${JSON.stringify(prompt)}],null,${JSON.stringify([conversation.c, conversation.r, conversation.rc])}]`]),
             }), {
+                timeout: 15000,
                 headers: {
                     Cookie: this.cookies,
                 },
                 params: {
                     bl: bl,
-                    rt: "c",
+                    rt: "0",
                     _reqid: "0",
+                    return_html: false,
                 },
             });
             let parsedResponse = this.ParseResponse(response.data);
             conversation.c = parsedResponse.c;
             conversation.r = parsedResponse.r;
             conversation.rc = parsedResponse.rc;
+            console.log('***** parsedResponse.responses = ', parsedResponse.responses);
             return parsedResponse.responses;
         }
         catch (e) {

@@ -23,8 +23,11 @@ let bot = new Bard(cookies, {
 
 server.post("/ask", async (req, res) => {
   try {
+    console.log('request = ', req['body']);
     const { prompt, conversationId } = req['body'];
-    let response = await bot.ask(prompt, conversationId);
+    console.log('prompt = ', prompt);
+    console.log('conversationId = ', conversationId);
+    let response = await bot.ask(prompt);
     console.log('response = ', response);
     res.status(200).send(response);
   } catch(e) {res.status(400).send({})}
