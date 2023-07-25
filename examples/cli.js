@@ -8,7 +8,7 @@ const server = express();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 
-let cookies = `NID=; SID=; __Secure-1PSID=YwgB5fzSJXty5aAWAVvaQbmB61eLZ-FJqScw7rzdIdxsSyKLyn0305On6IboG12DHsDhew.; __Secure-3PSID=; HSID=; SSID=; APISID=; SAPISID=; __Secure-1PAPISID=; __Secure-3PAPISID=; SIDCC=; __Secure-1PSIDCC=; __Secure-3PSIDCC=`;
+let cookies = `NID=; SID=; __Secure-1PSID=ZAgB5Ylx2tNAcLOHf1RG9Rs2_GeIHQvw7A1vSGsDz92Ae9sh7RZU0EVH1VmToK-s6LMBXg.; __Secure-3PSID=; HSID=; SSID=; APISID=; SAPISID=; __Secure-1PAPISID=; __Secure-3PAPISID=; SIDCC=; __Secure-1PSIDCC=; __Secure-3PSIDCC=`;
 let bot = new Bard(cookies, {
   // proxy: {  // optional
   //   host: process.env.PROXY_HOST,
@@ -25,11 +25,9 @@ server.post("/ask", async (req, res) => {
   try {
     console.log('request = ', req['body']);
     const { prompt, conversationId } = req['body'];
-    console.log('prompt = ', prompt);
-    console.log('conversationId = ', conversationId);
-    let response = await bot.ask(prompt);
-    console.log('response = ', response);
-    res.status(200).send(response);
+    let responses = await bot.ask(prompt, conversationId);
+    console.log('responses = ', responses);
+    res.status(200).send(responses);
   } catch(e) {res.status(400).send({})}
 });
 

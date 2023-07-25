@@ -212,7 +212,6 @@ class Bard {
             conversation.c = parsedResponse.c;
             conversation.r = parsedResponse.r;
             conversation.rc = parsedResponse.rc;
-            console.log('***** parsedResponse.responses = ', parsedResponse.responses);
             return parsedResponse.responses;
         }
         catch (e) {
